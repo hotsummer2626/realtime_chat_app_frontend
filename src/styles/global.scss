@@ -1,0 +1,50 @@
+@import "./variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    bottom: -20%;
+    content: "";
+    display: block;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: $theme-color;
+  }
+  &::after{
+    position: absolute;
+    z-index: -1;
+    right: -10%;
+    top: -10%;
+    content: '';
+    display: block;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: $black;
+  }
+}

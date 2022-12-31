@@ -1,0 +1,11 @@
+@import "../../../../styles/variables.scss";
+
+.reminder {
+  font-size: $font-size-normal;
+  color: $text-grey-1;
+  span {
+    font-size: $font-size-normal;
+    color: $theme-color;
+    cursor: pointer;
+  }
+}

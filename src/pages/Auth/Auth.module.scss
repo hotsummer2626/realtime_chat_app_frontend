@@ -1,0 +1,59 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  position: relative;
+  width: 500px;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding-top: 100px;
+  .logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $theme-color;
+    width: 270px;
+    height: 130px;
+    padding: $padding-2;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+      position: absolute;
+      left: 30px;
+      bottom: -5px;
+      content: "";
+      display: block;
+      width: 45px;
+      height: 45px;
+      background: $theme-color;
+      transform: rotate(45deg);
+    }
+    h1 {
+      font-size: $font-size-h1;
+      color: #fff;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 $padding-1 $padding-1;
+    h2 {
+      font-size: $font-size-h2;
+      text-align: center;
+      color: $text-grey-1;
+      margin-bottom: $margin-bottom;
+    }
+    input {
+      @include input;
+    }
+    button {
+      @include button;
+    }
+  }
+}
