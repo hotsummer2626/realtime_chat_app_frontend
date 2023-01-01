@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./Login.module.scss";
 
 const Login = ({ switchToRegister }) => {
   const [formData, setFormData] = useState({
@@ -28,7 +27,7 @@ const Login = ({ switchToRegister }) => {
         onChange={inputChangeHandler("password")}
       />
       <button>Login</button>
-      <div className={styles.reminder}>
+      <div className='reminder'>
         Don't have an account?&nbsp;
         <span onClick={switchToRegister}>Register</span>
       </div>

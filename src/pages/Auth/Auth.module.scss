@@ -7,6 +7,7 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   padding-top: 100px;
+  background: #fff;
   .logo {
     position: absolute;
     top: 0;
@@ -55,5 +56,17 @@
     button {
       @include button;
     }
+    :global(.reminder) {
+      font-size: $font-size-normal;
+      color: $text-grey-1;
+      span {
+        font-size: $font-size-normal;
+        color: $theme-color;
+        cursor: pointer;
+      }
+    }
+  }
+  :global(.Toastify__toast-theme--dark){
+    background-color: $black;
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles/global.scss";
-import styles from "./App.module.scss";
 import { Routes, Route } from "react-router-dom";
 import Chat from "./pages/Chat/Chat";
 import Auth from "./pages/Auth/Auth";
