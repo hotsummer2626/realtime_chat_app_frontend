@@ -4,7 +4,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user || !user.token || user.token === "") {
+    if (!user?.token || user?.token === "") {
       return {
         user: null,
         expireTime: 0,
@@ -24,6 +24,10 @@ export const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state.user));
       localStorage.setItem("expireTime", JSON.stringify(state.expireTime));
     },
+    setUserAvatar(state, action) {
+      state.user = { ...state.user, avatar: action.payload.avatar };
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
     logout(state, action) {
       state.user = null;
       localStorage.removeItem("user");
@@ -32,4 +36,4 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, setUserAvatar, logout } = authSlice.actions;

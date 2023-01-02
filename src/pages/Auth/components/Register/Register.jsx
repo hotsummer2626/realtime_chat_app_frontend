@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../../../store/apis/auth";
+import { login } from "../../../../store/slices/auth";
 import {
   ToastContainer,
   toast,
   toastOptions,
 } from "../../../../components/Toast";
-import { login } from "../../../../store/slices/auth";
 
 const Register = ({ switchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -18,9 +18,7 @@ const Register = ({ switchToLogin }) => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth } = useSelector((state) => state);
-  const [register, { isLoading }] = useRegisterMutation();
-  console.log(auth);
+  const [register] = useRegisterMutation();
 
   const inputChangeHandler = (inputName) => (e) =>
     setFormData({
@@ -74,7 +72,7 @@ const Register = ({ switchToLogin }) => {
             return;
           }
           dispatch(login(res.data.user));
-          navigate("/chat", { replace: true });
+          navigate("/avatar", { replace: true });
         })
         .catch((err) => alert(err));
     }

@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  width: 500px;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: $padding-2;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h3 {
+    font-size: $font-size-h3;
+    margin-bottom: $margin-bottom;
+  }
+  .avatarsWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    .avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      justify-self: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      &.selected {
+        border: 5px solid $theme-color;
+      }
+    }
+  }
+  .button{
+    @include button;
+    width: 400px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
