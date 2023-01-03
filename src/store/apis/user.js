@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
-const baseUrl = "http://localhost:5000/api/user/";
+const baseUrl = "http://localhost:5000/api/users/";
 
 const userApi = createApi({
   reducerPath: "userApi",
@@ -18,10 +18,15 @@ const userApi = createApi({
           };
         },
       }),
+      getAllUsers: build.query({
+        query() {
+          return "";
+        },
+      }),
     };
   },
 });
 
-export const { useSetAvatarMutation } = userApi;
+export const { useSetAvatarMutation, useGetAllUsersQuery } = userApi;
 
 export default userApi;

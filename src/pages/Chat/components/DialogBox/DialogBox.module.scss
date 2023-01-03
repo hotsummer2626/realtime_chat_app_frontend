@@ -1,0 +1,92 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
+
+.container {
+  box-shadow: $box-shadow;
+  .header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: $padding-2;
+    padding-left: $padding-2;
+    margin-bottom: $margin-bottom;
+    img {
+      width: 50px;
+    }
+    h3 {
+      font-size: $font-size-h3;
+    }
+  }
+  .dialog {
+    width: 100%;
+    height: calc(100% - 155px);
+    border-top: 1px solid $text-grey-1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: $padding-2;
+    .message{
+      max-width: 100px;
+      box-shadow: $box-shadow;
+    }
+  }
+  form {
+    box-shadow: $box-shadow;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    input {
+      @include input;
+    }
+    .emoji,
+    button {
+      @include button;
+      width: 50px;
+      border-radius: 50%;
+      margin-top: 0px;
+      margin-bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .emoji {
+      color: #f7c64a;
+      background: #fff;
+      font-size: $font-size-h1;
+      position: relative;
+      :global(.EmojiPickerReact){
+        position: absolute;
+        top: -460px;
+        left: 20px;
+        :global(.epr-body){
+          &::-webkit-scrollbar {
+            width: 5px;
+          }
+      
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+      
+          &::-webkit-scrollbar-thumb {
+            background: $theme-color;
+            border-radius: $border-radius;
+          }
+          :global(.epr-emoji-category){
+            :global(.epr-emoji-category-label){
+              font-size: $font-size-normal;
+            }
+          }
+        }
+        :global(.epr-preview){
+          height: 50px;
+          img{
+            width: 30px !important;
+            height: 30px !important;
+          }
+        }
+      }
+    }
+  }
+}

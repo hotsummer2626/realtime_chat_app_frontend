@@ -1,0 +1,49 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
+
+.container {
+  padding: $padding-2;
+  overflow: overlay;
+  .searchBar {
+    input {
+      @include input;
+    }
+  }
+  .userListContainer {
+    height: calc(100% - 80px);
+    overflow-y: overlay;
+    border-radius: $border-radius;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $theme-color;
+      border-radius: $border-radius;
+    }
+    .userListWrapper {
+      display: flex;
+      flex-direction: column;
+      padding: $padding-2;
+      gap: 10px;
+      .userItem {
+        display: flex;
+        align-items: center;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        gap: 10px;
+        padding: $padding-2;
+        img {
+          width: 60px;
+        }
+        h3 {
+          font-size: $font-size-h3;
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSetAvatarMutation } from "../../store/apis/user";
 import { setUserAvatar, logout } from "../../store/slices/auth";
 import { ToastContainer, toast, toastOptions } from "../../components/Toast";
+import Img from "../../components/Img";
 
 const SetAvatar = () => {
   const [avatars, setAvatars] = useState(null);
@@ -65,7 +66,7 @@ const SetAvatar = () => {
                 }`}
                 onClick={() => setSelectedAvatarIndex(index)}
               >
-                <img src={`data:image/svg+xml;base64,${avatar}`} alt="avatar" />
+                <Img avatar={avatar} />
               </div>
             ))}
         </div>
