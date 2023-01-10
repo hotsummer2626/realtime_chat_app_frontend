@@ -3,6 +3,17 @@
 
 .container {
   box-shadow: $box-shadow;
+  height: inherit;
+  .initial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    h3{
+      font-size: $font-size-h3;
+    }
+  }
   .header {
     height: 50px;
     display: flex;
@@ -24,11 +35,51 @@
     border-top: 1px solid $text-grey-1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: $padding-2;
-    .message{
-      max-width: 100px;
+    gap: 15px;
+    padding: $padding-2 30px;
+    overflow-y: overlay;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $theme-color;
+      border-radius: $border-radius;
+    }
+    .message {
+      position: relative;
+      width: max-content;
+      max-width: 280px;
       box-shadow: $box-shadow;
+      padding: $padding-2;
+      border-radius: $border-radius-small;
+      background: #fff;
+      &::after{
+        background: #fff;
+        box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, 0.4);
+        content: "";
+        display: block;
+        width: 15px;
+        height: 15px;
+        left: -12px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+      &.sender{
+        background: $theme-color;
+        align-self: flex-end;
+        &::after{
+          left: auto;
+          right: 0px;
+          background: $theme-color;
+          box-shadow: 2px -2px 2px 0 rgba(178, 178, 178, 0.4);
+        }
+      }
     }
   }
   form {
@@ -56,32 +107,32 @@
       background: #fff;
       font-size: $font-size-h1;
       position: relative;
-      :global(.EmojiPickerReact){
+      :global(.EmojiPickerReact) {
         position: absolute;
         top: -460px;
         left: 20px;
-        :global(.epr-body){
+        :global(.epr-body) {
           &::-webkit-scrollbar {
             width: 5px;
           }
-      
+
           &::-webkit-scrollbar-track {
             background: transparent;
           }
-      
+
           &::-webkit-scrollbar-thumb {
             background: $theme-color;
             border-radius: $border-radius;
           }
-          :global(.epr-emoji-category){
-            :global(.epr-emoji-category-label){
+          :global(.epr-emoji-category) {
+            :global(.epr-emoji-category-label) {
               font-size: $font-size-normal;
             }
           }
         }
-        :global(.epr-preview){
+        :global(.epr-preview) {
           height: 50px;
-          img{
+          img {
             width: 30px !important;
             height: 30px !important;
           }
