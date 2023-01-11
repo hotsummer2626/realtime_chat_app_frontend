@@ -1,4 +1,28 @@
-@import '../../../../styles/variables.scss';
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
 
-.container{
+.container {
+  position: relative;
+  padding: $padding-2;
+  text-align: center;
+  .imgWrapper {
+    padding: $padding-1;
+  }
+  h3 {
+    font-size: $font-size-h3;
+    margin-bottom: $margin-bottom;
+  }
+  .email {
+    font-size: $font-size-normal;
+  }
+  .logout {
+    @include button;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 30px);
+  }
 }

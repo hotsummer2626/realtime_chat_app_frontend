@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./DialogBox.module.scss";
 import Img from "../../../../components/Img";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSmile, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import Picker from "emoji-picker-react";
@@ -17,20 +16,16 @@ const DialogBox = () => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [arriveMessage, setArriveMessage] = useState({});
-    const navigate = useNavigate();
-    const scrollElement = useRef();
     const {
         auth: { user: currentUser },
         user: { selectedDialogUser },
     } = useSelector((state) => state);
     const [addMessageFn] = useAddMessageMutation();
     const [getAllMessagesFn] = useGetAllMessagesMutation();
-    const socket = useRef()
+    const scrollElement = useRef();
+    const socket = useRef();
 
     useEffect(() => {
-        if (!currentUser) {
-            navigate("/", { replace: true });
-        }
         if (currentUser && selectedDialogUser) {
             getAllMessagesFn({
                 senderId: currentUser._id,
@@ -42,30 +37,23 @@ const DialogBox = () => {
     }, [currentUser, selectedDialogUser]);
 
     useEffect(() => {
-        if (scrollElement.current) {
-            scrollElement.current.scrollTop =
-                scrollElement.current.scrollHeight;
-        }
-    }, [messages]);
-
-    useEffect(() => {
-        if (currentUser) {
-            socket.current = io("http://localhost:5000");
-            socket.current.emit("add-user", currentUser._id);
-        }
-    }, [currentUser]);
-
-    useEffect(() => {
-        if (socket.current) {
-            socket.current.on("receive-msg", (msg) => {
-                setArriveMessage({ message: msg, fromSelf: false });
-            });
-        }
+        socket.current = io("http://localhost:5000");
+        socket.current.emit("add-user", currentUser._id);
+        socket.current.on("receive-msg", (msg) => {
+            setArriveMessage({ message: msg, fromSelf: false });
+        });
     }, []);
 
     useEffect(() => {
         arriveMessage && setMessages([...messages, arriveMessage]);
     }, [arriveMessage]);
+
+    useEffect(() => {
+        if (scrollElement.current) {
+            scrollElement.current.scrollTop =
+                scrollElement.current.scrollHeight;
+        }
+    }, [messages]);
 
     const handleEmojiClick = (emoji, e) => {
         e.stopPropagation();
@@ -88,12 +76,10 @@ const DialogBox = () => {
                         ...messages,
                         { message: res.data.msg.text, fromSelf: true },
                     ]);
-                    if (socket) {
-                        socket.current.emit("send-msg", {
-                            to: selectedDialogUser._id,
-                            message,
-                        });
-                    }
+                    socket.current.emit("send-msg", {
+                        to: selectedDialogUser._id,
+                        message,
+                    });
                 }
             })
             .catch((err) => alert(err));
