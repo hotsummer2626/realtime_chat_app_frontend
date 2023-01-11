@@ -48,3 +48,22 @@ body {
     background: $black;
   }
 }
+
+@media (max-width:576px) {
+  body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    &::before{
+      width: 300px;
+      height: 300px;
+      bottom: -100px;
+      left: -100px;
+    }
+    &:after{
+      width: 200px;
+      height: 200px;
+      right: -20%;
+    }
+  }
+}

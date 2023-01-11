@@ -6,14 +6,18 @@ import { logout } from "../../../../store/slices/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-const UserInfo = () => {
+const UserInfo = ({ currentShowPart }) => {
     const {
         auth: { user },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
 
     return (
-        <div className={styles.container}>
+        <div
+            className={`${styles.container} ${
+                currentShowPart === "userInfo" ? styles.show : ""
+            }`}
+        >
             <div className={styles.imgWrapper}>
                 <Img avatar={user.avatar} />
             </div>

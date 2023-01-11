@@ -4,13 +4,13 @@
 .container {
   box-shadow: $box-shadow;
   height: inherit;
-  .initial{
+  .initial {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    h3{
+    h3 {
       font-size: $font-size-h3;
     }
   }
@@ -31,7 +31,7 @@
   }
   .dialog {
     width: 100%;
-    height: calc(100% - 155px);
+    height: calc(100% - 175px);
     border-top: 1px solid $text-grey-1;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@
       padding: $padding-2;
       border-radius: $border-radius-small;
       background: #fff;
-      &::after{
+      &::after {
         background: #fff;
         box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, 0.4);
         content: "";
@@ -70,10 +70,10 @@
         top: 50%;
         transform: rotate(45deg) translateY(-50%);
       }
-      &.sender{
+      &.sender {
         background: $theme-color;
         align-self: flex-end;
-        &::after{
+        &::after {
           left: auto;
           right: 0px;
           background: $theme-color;
@@ -138,6 +138,18 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    display: none;
+    &.show {
+      display: block;
+    }
+    .initial {
+      text-align: center;
     }
   }
 }

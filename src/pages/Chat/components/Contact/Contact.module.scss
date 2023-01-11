@@ -2,6 +2,7 @@
 @import "../../../../styles/mixins.scss";
 
 .container {
+  position: relative;
   padding: $padding-2;
   overflow: overlay;
   .searchBar {
@@ -44,6 +45,15 @@
           font-size: $font-size-h3;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    display: none;
+    &.show {
+      display: block;
     }
   }
 }

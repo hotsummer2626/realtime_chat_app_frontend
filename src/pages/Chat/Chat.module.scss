@@ -9,5 +9,28 @@
   background: #fff;
   display: grid;
   grid-template-columns: 3fr 5fr 2fr;
-  overflow: hidden;
+  .switchButton{
+    display: none;
+  }
+}
+
+@media (max-width:576px) {
+  .container{
+    width: 100vw;
+    grid-template-columns: 1fr;
+    transform: translateY(-20px);
+    .switchButton {
+      position: absolute;
+      display: flex;
+      gap: 10px;
+      bottom: -50px;
+      padding: $padding-2;
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+    }
+  }
 }

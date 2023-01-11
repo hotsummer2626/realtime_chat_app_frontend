@@ -11,7 +11,7 @@ import {
 } from "../../../../store/apis/message";
 import { io } from "socket.io-client";
 
-const DialogBox = () => {
+const DialogBox = ({ currentShowPart }) => {
     const [isEmojiPickerShow, setIsEmojiPickerShow] = useState(false);
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -85,7 +85,11 @@ const DialogBox = () => {
             .catch((err) => alert(err));
     };
     return (
-        <div className={styles.container}>
+        <div
+            className={`${styles.container} ${
+                currentShowPart === "dialog" ? styles.show : ""
+            }`}
+        >
             {selectedDialogUser ? (
                 <>
                     <div className={styles.header}>

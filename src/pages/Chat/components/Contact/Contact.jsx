@@ -4,8 +4,10 @@ import Img from "../../../../components/Img";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetAllUsersQuery } from "../../../../store/apis/user";
 import { setSelectedDialogUser } from "../../../../store/slices/user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-const Contact = () => {
+const Contact = ({ currentShowPart, setCurrentShowPart }) => {
     const [users, setUsers] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [searchText, setSearchText] = useState("");
@@ -32,7 +34,11 @@ const Contact = () => {
     }, [searchText]);
 
     return (
-        <div className={styles.container}>
+        <div
+            className={`${styles.container} ${
+                currentShowPart === "contacts" ? styles.show : ""
+            }`}
+        >
             <div className={styles.searchBar}>
                 <input
                     type="text"
@@ -48,9 +54,10 @@ const Contact = () => {
                             <div
                                 key={user._id}
                                 className={styles.userItem}
-                                onClick={() =>
-                                    dispatch(setSelectedDialogUser(user))
-                                }
+                                onClick={() => {
+                                    dispatch(setSelectedDialogUser(user));
+                                    setCurrentShowPart("dialog");
+                                }}
                             >
                                 <Img avatar={user.avatar} />
                                 <h3>{user.username}</h3>
