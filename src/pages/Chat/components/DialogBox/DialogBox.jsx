@@ -37,7 +37,7 @@ const DialogBox = ({ currentShowPart }) => {
     }, [currentUser, selectedDialogUser]);
 
     useEffect(() => {
-        socket.current = io("http://localhost:5000");
+        socket.current = io(process.env.REACT_APP_REQUEST_URL);
         socket.current.emit("add-user", currentUser._id);
         socket.current.on("receive-msg", (msg) => {
             setArriveMessage({ message: msg, fromSelf: false });
